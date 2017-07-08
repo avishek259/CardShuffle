@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import com.card.shuffle.model.Deck;
 import com.card.shuffle.service.DeckService;
 import com.card.shuffle.util.CustomErrorType;
@@ -88,21 +87,20 @@ public class CardShuffleRestController {
 	  * @param deck
 	  * @return
 	  */
-	 @RequestMapping(value = "/card/{deckName}", method = RequestMethod.PUT)
-	    public ResponseEntity<?> updateDeck(@PathVariable("deckName") String deckName, @RequestBody Deck deck) {
-	        logger.info("Updating Deck with name {}", deckName);
+	 @RequestMapping(value = "/card/{shufflingType}", method = RequestMethod.PUT)
+	    public ResponseEntity<?> updateDeck(@PathVariable("shufflingType") String shufflingType, @RequestBody Deck deck) {
+	        logger.info("Shuffling Deck with name {}", deck.getName());
 	 
-	        deck = deckService.findByName(deckName);
+	        deck = deckService.findByName(deck.getName());
 	 
 	        if (deck == null) {
-	            logger.error("Unable to update. Deck with name {} not found.", deckName);
-	            return new ResponseEntity(new CustomErrorType("Unable to upate. Deck with name " + deckName + " not found."),
+	            logger.error("Unable to shuffle. Deck with name {} not found.", deck.getName());
+	            return new ResponseEntity(new CustomErrorType("Unable to shuffle. Deck with name " + deck.getName() + " not found."),
 	                    HttpStatus.NOT_FOUND);
 	        }
 	 
 	        //Logic to shuffle the cards
-	        deckService.shuffleCards(deck);
-	        //userService.updateUser(currentUser);
+	        deck = deckService.shuffleCards(deck,shufflingType);
 	        return new ResponseEntity<Deck>(deck, HttpStatus.OK);
 	    }
 	 /**

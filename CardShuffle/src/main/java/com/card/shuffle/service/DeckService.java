@@ -14,7 +14,7 @@ public interface DeckService {
 
 	boolean isDeckExist(Deck deck);
 
-	void shuffleCards(Deck deck);
+	Deck shuffleCards(Deck deck, String shufflingType);
 
 	void deleteDeckByName(String deckName);
 

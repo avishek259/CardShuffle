@@ -6,12 +6,12 @@ import java.util.List;
 public class Deck {
 	private String name;
 	private List<Card> cards = new ArrayList<Card>();
-	private boolean shuffeled = false;
-	public boolean isShuffeled() {
-		return shuffeled;
+	private boolean shuffled = false;
+	public boolean isShuffled() {
+		return shuffled;
 	}
-	public void setShuffeled(boolean shuffeled) {
-		this.shuffeled = shuffeled;
+	public void setShuffled(boolean shuffled) {
+		this.shuffled = shuffled;
 	}
 	public String getName() {
 		return name;
