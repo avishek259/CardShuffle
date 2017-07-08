@@ -1,0 +1,44 @@
+<div ng-controller="MainCtrl">
+
+<form novalidate class="simple-form mt-32 mb-32">
+    <div class="form-group">
+        <!-- <label for="exampleInputEmail1">Email address</label> -->
+        <input type="text" class="form-control br-color" id="fname" placeholder="First Name" ng-model="vm.user.fname">
+        
+    </div>
+    <div class="form-group">
+        <!-- <label for="exampleInputEmail1">Email address</label> -->
+        
+        <input type="text" class="form-control br-color" id="lname" placeholder="Last Name" ng-model="vm.user.lname">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control br-color" id="email" placeholder="abc@xyz.com" ng-model="vm.user.email">
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <textarea class="form-control ta-height" id="address" placeholder="Enter Address" ng-model="vm.user.address"/>
+    </div>
+    <div class="form-group">
+        <label for="number">Phone</label>
+        <input type="text" class="form-control br-color" id="number" placeholder="99xxxxxxxx" ng-model="vm.user.number">
+       
+    </div>
+    <div class="form-group">
+        <label for="country"> Country </label><br>
+        <select name="singleSelect" id="country" class="" ng-model="vm.user.country">
+          <option value="">India</option>
+          <option value="option-2">China</option>
+          <option value="option-3">United Arab Emirates</option>
+        </select>
+    </div>
+    <div class="checkbox mb-16">
+        <label>
+        <input type="checkbox" class="br-10" id="gift" ng-model="vm.user.checked" ng-checked="true"><div class="labelPos"><strong>This is a gift</strong> 
+        </div>
+        </label>
+    </div>
+    <button type="submit" id="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</button> 
+</form>
+ 
+</div>
