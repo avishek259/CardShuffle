@@ -15,10 +15,40 @@ import com.card.shuffle.model.Rank;
 import com.card.shuffle.model.Suit;
 import com.google.gson.Gson;
 
-@Service("userService")
+@Service("deckService")
 public class DeckServiceImpl implements DeckService {
-
-	public static List<Deck> deckList = new ArrayList<Deck>();
+	
+	private static List<Deck> deckList;
+	
+	static{
+		deckList= populateDummyUsers();
+	}
+	//public static List<Deck> deckList = new ArrayList<Deck>();
+	
+	private static List<Deck> populateDummyUsers(){
+		deckList = new ArrayList<Deck>();
+		Deck newDeck1 = new Deck();
+		newDeck1.setName("Test1");
+		Deck newDeck2 = new Deck();
+		newDeck2.setName("Test2");
+		createDeckTestData(newDeck1);
+		createDeckTestData(newDeck2);
+		return deckList;
+	}
+	
+	
+	private static void createDeckTestData(Deck deck) {
+		Deck newDeck = new Deck();
+		newDeck.setName(deck.getName());
+		List<Card> cards = new ArrayList<Card>();
+		for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+            	cards.add(new Card(rank, suit));
+            }
+		}
+		newDeck.setCards(cards);
+		deckList.add(newDeck);
+	}
 	
 	@Override
 	public Deck findByName(String deckName) {
@@ -114,11 +144,11 @@ public class DeckServiceImpl implements DeckService {
 	    return shuffledDeck;
 	  }
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Gson gson = new Gson();
 		Deck deck = new Deck();
 		deck.setName("Avi");
 		System.out.println("Json :"+gson.toJson(deck));
-	}
+	}*/
 	
 }
